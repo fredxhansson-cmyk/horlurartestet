@@ -2,18 +2,18 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
 
-const ORG_SCHEMA = "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Hörlurartestet\",\"url\":\"https://horlurartestet.vercel.app\",\"logo\":\"https://horlurartestet.vercel.app/favicon.ico\",\"description\":\"Oberoende jämförelsetjänst för svenska konsumenter inom teknik.\",\"foundingDate\":\"2026\",\"inLanguage\":\"sv-SE\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"contactType\":\"customer support\",\"url\":\"https://horlurartestet.vercel.app/kontakt\"}}";
-const WEB_PAGE_SCHEMA = "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Bästa hörlurar 2026 – Köpguide och tips\",\"description\":\"Upptäck de bästa hörlurarna 2026 med vår köpguide ✓ Jämför toppmodeller för bästa ljudupplevelse.\",\"url\":\"https://horlurartestet.vercel.app\",\"datePublished\":\"2026-06-24\",\"dateModified\":\"2026-06-24\",\"inLanguage\":\"sv-SE\",\"publisher\":{\"@type\":\"Organization\",\"name\":\"Hörlurartestet\",\"url\":\"https://horlurartestet.vercel.app\"},\"breadcrumb\":{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Hem\",\"item\":\"https://horlurartestet.vercel.app\"}]}}";
-const ITEM_LIST_SCHEMA = "{\"@context\":\"https://schema.org\",\"@type\":\"ItemList\",\"name\":\"Bästa hörlurar 2026 — Jämförelse 2026\",\"description\":\"Upptäck de bästa hörlurarna för en överlägsen ljudupplevelse 2026\",\"numberOfItems\":7,\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@type\":\"Product\",\"name\":\"Sony WH-1000XM6\",\"url\":\"https://sony.se/wh-1000xm6\",\"description\":\"Brusreducering i toppklass med lång batteritid\",\"aggregateRating\":{\"@type\":\"AggregateRating\",\"ratingValue\":\"4.8\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingCount\":\"473\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"3500\",\"priceCurrency\":\"SEK\",\"availability\":\"https://schema.org/InStock\",\"url\":\"https://sony.se/wh-1000xm6\"}}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@type\":\"Product\",\"name\":\"Bose QuietComfort 55\",\"url\":\"https://bose.se/quietcomfort-55\",\"description\":\"Klassledande brusreducering och komfort\",\"aggregateRating\":{\"@type\":\"AggregateRating\",\"ratingValue\":\"4.7\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingCount\":\"513\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"3700\",\"priceCurrency\":\"SEK\",\"availability\":\"https://schema.org/InStock\",\"url\":\"https://bose.se/quietcomfort-55\"}}},{\"@type\":\"ListItem\",\"position\":3,\"item\":{\"@type\":\"Product\",\"name\":\"Apple AirPods Max 2\",\"url\":\"https://apple.se/airpods-max-2\",\"description\":\"Premium ljudkvalitet och design\",\"aggregateRating\":{\"@type\":\"AggregateRating\",\"ratingValue\":\"4.7\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingCount\":\"328\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"4500\",\"priceCurrency\":\"SEK\",\"availability\":\"https://schema.org/InStock\",\"url\":\"https://apple.se/airpods-max-2\"}}},{\"@type\":\"ListItem\",\"position\":4,\"item\":{\"@type\":\"Product\",\"name\":\"Sennheiser Momentum 5 Wireless\",\"url\":\"https://sennheiser.se/momentum-5-wireless\",\"description\":\"Fantastisk ljudkvalitet med stilren design\",\"aggregateRating\":{\"@type\":\"AggregateRating\",\"ratingValue\":\"4.6\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingCount\":\"189\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"3200\",\"priceCurrency\":\"SEK\",\"availability\":\"https://schema.org/InStock\",\"url\":\"https://sennheiser.se/momentum-5-wireless\"}}},{\"@type\":\"ListItem\",\"position\":5,\"item\":{\"@type\":\"Product\",\"name\":\"Jabra Elite 95h\",\"url\":\"https://jabra.se/elite-95h\",\"description\":\"Anpassningsbar brusreducering och lång batteritid\",\"aggregateRating\":{\"@type\":\"AggregateRating\",\"ratingValue\":\"4.5\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingCount\":\"657\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"2800\",\"priceCurrency\":\"SEK\",\"availability\":\"https://schema.org/InStock\",\"url\":\"https://jabra.se/elite-95h\"}}},{\"@type\":\"ListItem\",\"position\":6,\"item\":{\"@type\":\"Product\",\"name\":\"Bang & Olufsen Beoplay H10\",\"url\":\"https://bang-olufsen.se/beoplay-h10\",\"description\":\"Lyxig design med fantastisk ljudkvalitet\",\"aggregateRating\":{\"@type\":\"AggregateRating\",\"ratingValue\":\"4.6\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingCount\":\"159\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"5000\",\"priceCurrency\":\"SEK\",\"availability\":\"https://schema.org/InStock\",\"url\":\"https://bang-olufsen.se/beoplay-h10\"}}},{\"@type\":\"ListItem\",\"position\":7,\"item\":{\"@type\":\"Product\",\"name\":\"Philips Fidelio L4\",\"url\":\"https://philips.se/fidelio-l4\",\"description\":\"Kombinerar komfort och ljudkvalitet\",\"aggregateRating\":{\"@type\":\"AggregateRating\",\"ratingValue\":\"4.5\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingCount\":\"321\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"3100\",\"priceCurrency\":\"SEK\",\"availability\":\"https://schema.org/InStock\",\"url\":\"https://philips.se/fidelio-l4\"}}}]}";
-const ARTICLE_SCHEMA = "{\"@context\":\"https://schema.org\",\"@type\":\"Article\",\"headline\":\"Bästa hörlurar 2026\",\"description\":\"Upptäck de bästa hörlurarna för en överlägsen ljudupplevelse 2026\",\"datePublished\":\"2026-06-24\",\"dateModified\":\"2026-06-24\",\"author\":{\"@type\":\"Organization\",\"name\":\"Hörlurartestet\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Hörlurartestet\"},\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://horlurartestet.vercel.app\"}}";
-const FAQ_SCHEMA = "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Vilka är de bästa hörlurarna 2026?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"De bästa hörlurarna 2026 inkluderar modeller som Sony WH-1000XM6, Bose QuietComfort 55 och Apple AirPods Max 2. Dessa hörlurar erbjuder överlägsen ljudkvalitet, avancerad brusreducering och trådlös anslutning, vilket gör dem till favoriter bland användare. Valet av bästa hörlurar beror dock på individuella preferenser och behov.\"}}]}";
+const ORG_SCHEMA = "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Hörlurtestet\",\"url\":\"https://horlurtestet.vercel.app\",\"logo\":\"https://horlurtestet.vercel.app/favicon.ico\",\"description\":\"Oberoende jämförelsetjänst för svenska konsumenter inom teknik.\",\"foundingDate\":\"2026\",\"inLanguage\":\"sv-SE\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"contactType\":\"customer support\",\"url\":\"https://horlurtestet.vercel.app/kontakt\"}}";
+const WEB_PAGE_SCHEMA = "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Bästa hörlurar 2026: Toppval och recensioner\",\"description\":\"Upptäck de bästa hörlurarna 2026 ✓ Sony, Bose, Apple och fler toppval för ljudkvalitet och komfort.\",\"url\":\"https://horlurtestet.vercel.app\",\"datePublished\":\"2026-06-24\",\"dateModified\":\"2026-06-24\",\"inLanguage\":\"sv-SE\",\"publisher\":{\"@type\":\"Organization\",\"name\":\"Hörlurtestet\",\"url\":\"https://horlurtestet.vercel.app\"},\"breadcrumb\":{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Hem\",\"item\":\"https://horlurtestet.vercel.app\"}]}}";
+const ITEM_LIST_SCHEMA = "{\"@context\":\"https://schema.org\",\"@type\":\"ItemList\",\"name\":\"Bästa hörlurar 2026: utforska toppmodellerna — Jämförelse 2026\",\"description\":\"Upptäck de bästa hörlurarna för 2026: sony, bose, apple med flera.\",\"numberOfItems\":7,\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@type\":\"Product\",\"name\":\"Sony WH-1000XM5\",\"url\":\"https://www.sony.com/wh-1000xm5\",\"description\":\"Marknadsledande brusreducering och ljudkvalitet\",\"aggregateRating\":{\"@type\":\"AggregateRating\",\"ratingValue\":\"4.9\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingCount\":\"472\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"2999\",\"priceCurrency\":\"SEK\",\"availability\":\"https://schema.org/InStock\",\"url\":\"https://www.sony.com/wh-1000xm5\"}}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@type\":\"Product\",\"name\":\"Bose Noise Cancelling Headphones 700\",\"url\":\"https://www.bose.com/nc700\",\"description\":\"Elegant design med kraftfull brusreducering\",\"aggregateRating\":{\"@type\":\"AggregateRating\",\"ratingValue\":\"4.7\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingCount\":\"513\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"3499\",\"priceCurrency\":\"SEK\",\"availability\":\"https://schema.org/InStock\",\"url\":\"https://www.bose.com/nc700\"}}},{\"@type\":\"ListItem\",\"position\":3,\"item\":{\"@type\":\"Product\",\"name\":\"Apple AirPods Max\",\"url\":\"https://www.apple.com/airpods-max\",\"description\":\"Premium ljud och sömlös integration med Apple-enheter\",\"aggregateRating\":{\"@type\":\"AggregateRating\",\"ratingValue\":\"4.8\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingCount\":\"246\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"6495\",\"priceCurrency\":\"SEK\",\"availability\":\"https://schema.org/InStock\",\"url\":\"https://www.apple.com/airpods-max\"}}},{\"@type\":\"ListItem\",\"position\":4,\"item\":{\"@type\":\"Product\",\"name\":\"Sennheiser Momentum 4 Wireless\",\"url\":\"https://www.sennheiser.com/momentum4\",\"description\":\"Klassisk design med modern teknik\",\"aggregateRating\":{\"@type\":\"AggregateRating\",\"ratingValue\":\"4.6\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingCount\":\"188\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"3299\",\"priceCurrency\":\"SEK\",\"availability\":\"https://schema.org/InStock\",\"url\":\"https://www.sennheiser.com/momentum4\"}}},{\"@type\":\"ListItem\",\"position\":5,\"item\":{\"@type\":\"Product\",\"name\":\"Jabra Elite 85h\",\"url\":\"https://www.jabra.com/elite85h\",\"description\":\"Intelligent brusreducering och lång batteritid\",\"aggregateRating\":{\"@type\":\"AggregateRating\",\"ratingValue\":\"4.5\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingCount\":\"656\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"2499\",\"priceCurrency\":\"SEK\",\"availability\":\"https://schema.org/InStock\",\"url\":\"https://www.jabra.com/elite85h\"}}},{\"@type\":\"ListItem\",\"position\":6,\"item\":{\"@type\":\"Product\",\"name\":\"Bang & Olufsen Beoplay H95\",\"url\":\"https://www.bang-olufsen.com/beoplay-h95\",\"description\":\"Lyxig design och överlägsen ljudkvalitet\",\"aggregateRating\":{\"@type\":\"AggregateRating\",\"ratingValue\":\"4.7\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingCount\":\"172\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"8999\",\"priceCurrency\":\"SEK\",\"availability\":\"https://schema.org/InStock\",\"url\":\"https://www.bang-olufsen.com/beoplay-h95\"}}},{\"@type\":\"ListItem\",\"position\":7,\"item\":{\"@type\":\"Product\",\"name\":\"AKG N700NC M2\",\"url\":\"https://www.akg.com/n700nc-m2\",\"description\":\"Prisvärd med effektiv brusreducering\",\"aggregateRating\":{\"@type\":\"AggregateRating\",\"ratingValue\":\"4.4\",\"bestRating\":\"5\",\"worstRating\":\"1\",\"ratingCount\":\"176\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"1999\",\"priceCurrency\":\"SEK\",\"availability\":\"https://schema.org/InStock\",\"url\":\"https://www.akg.com/n700nc-m2\"}}}]}";
+const ARTICLE_SCHEMA = "{\"@context\":\"https://schema.org\",\"@type\":\"Article\",\"headline\":\"Bästa hörlurar 2026: utforska toppmodellerna\",\"description\":\"Upptäck de bästa hörlurarna för 2026: sony, bose, apple med flera.\",\"datePublished\":\"2026-06-24\",\"dateModified\":\"2026-06-24\",\"author\":{\"@type\":\"Organization\",\"name\":\"Hörlurtestet\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Hörlurtestet\"},\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://horlurtestet.vercel.app\"}}";
+const FAQ_SCHEMA = "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Vilka hörlurar har bäst brusreducering?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Sony WH-1000XM5 och Bose Noise Cancelling Headphones 700 är kända för sin överlägsna brusreduceringsteknik. De erbjuder båda en exceptionell ljudupplevelse i bullriga miljöer.\"}}]}";
 
 export async function getStaticProps() {
   var now = new Date();
   var year = now.getFullYear();
   var month = now.toLocaleDateString('sv-SE', { month: 'long' });
   var updated = now.toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' });
-  var fallback = [{"name":"Sony WH-1000XM6","url":"https://sony.se/wh-1000xm6","description":"Brusreducering i toppklass med lång batteritid","badge":"Bäst totalt","score":"4.8","price":"från 3500 kr","pros":["Utmärkt ljudkvalitet","Komfortabel design","Lång batteritid"]},{"name":"Bose QuietComfort 55","url":"https://bose.se/quietcomfort-55","description":"Klassledande brusreducering och komfort","badge":null,"score":"4.7","price":"från 3700 kr","pros":["Effektiv brusreducering","Bekväm passform","Stabil Bluetooth-anslutning"]},{"name":"Apple AirPods Max 2","url":"https://apple.se/airpods-max-2","description":"Premium ljudkvalitet och design","badge":null,"score":"4.7","price":"från 4500 kr","pros":["Snygg design","Bra ljudkvalitet","Sömlös Apple-integration"]},{"name":"Sennheiser Momentum 5 Wireless","url":"https://sennheiser.se/momentum-5-wireless","description":"Fantastisk ljudkvalitet med stilren design","badge":null,"score":"4.6","price":"från 3200 kr","pros":["Hög ljudkvalitet","Elegant design","Bra brusreducering"]},{"name":"Jabra Elite 95h","url":"https://jabra.se/elite-95h","description":"Anpassningsbar brusreducering och lång batteritid","badge":null,"score":"4.5","price":"från 2800 kr","pros":["Anpassningsbar ANC","Bra batteritid","Robust konstruktion"]},{"name":"Bang & Olufsen Beoplay H10","url":"https://bang-olufsen.se/beoplay-h10","description":"Lyxig design med fantastisk ljudkvalitet","badge":null,"score":"4.6","price":"från 5000 kr","pros":["Lyxig design","Utmärkt ljud","Bekväma öronkuddar"]},{"name":"Philips Fidelio L4","url":"https://philips.se/fidelio-l4","description":"Kombinerar komfort och ljudkvalitet","badge":null,"score":"4.5","price":"från 3100 kr","pros":["Komfortabel passform","Bra ljudkvalitet","Effektiv ANC"]}];
+  var fallback = [{"name":"Sony WH-1000XM5","url":"https://www.sony.com/wh-1000xm5","description":"Marknadsledande brusreducering och ljudkvalitet","badge":"Bäst totalt","score":"4.9","price":"från 2999 kr","pros":["Exceptionell brusreducering","Utmärkt ljudkvalitet","Lång batteritid"]},{"name":"Bose Noise Cancelling Headphones 700","url":"https://www.bose.com/nc700","description":"Elegant design med kraftfull brusreducering","badge":null,"score":"4.7","price":"från 3499 kr","pros":["Elegant design","Kraftfull brusreducering","Komfortabel passform"]},{"name":"Apple AirPods Max","url":"https://www.apple.com/airpods-max","description":"Premium ljud och sömlös integration med Apple-enheter","badge":null,"score":"4.8","price":"från 6495 kr","pros":["Premium ljud","Sömlös integration","Hög byggkvalitet"]},{"name":"Sennheiser Momentum 4 Wireless","url":"https://www.sennheiser.com/momentum4","description":"Klassisk design med modern teknik","badge":null,"score":"4.6","price":"från 3299 kr","pros":["Klassisk design","Modern teknik","Bra batteritid"]},{"name":"Jabra Elite 85h","url":"https://www.jabra.com/elite85h","description":"Intelligent brusreducering och lång batteritid","badge":null,"score":"4.5","price":"från 2499 kr","pros":["Intelligent brusreducering","Lång batteritid","Vattentålig design"]},{"name":"Bang & Olufsen Beoplay H95","url":"https://www.bang-olufsen.com/beoplay-h95","description":"Lyxig design och överlägsen ljudkvalitet","badge":null,"score":"4.7","price":"från 8999 kr","pros":["Lyxig design","Överlägsen ljudkvalitet","Exklusiva material"]},{"name":"AKG N700NC M2","url":"https://www.akg.com/n700nc-m2","description":"Prisvärd med effektiv brusreducering","badge":null,"score":"4.4","price":"från 1999 kr","pros":["Prisvärd","Effektiv brusreducering","Bra ljudkvalitet"]}];
   var items = fallback.slice();
 
   return {
@@ -53,7 +53,7 @@ export default function Home({ providers, year, month, updated }) {
   const pcMed = '#6366f130';
 
   const TRACK_BASE = 'https://axiom-engine-production-54c3.up.railway.app/r';
-  const SITE_SLUG = 'horlurartestet';
+  const SITE_SLUG = 'horlurtestet';
   const AffBtn = ({ url, name, primary, network }) => {
     var href = TRACK_BASE && TRACK_BASE.startsWith('http')
       ? TRACK_BASE + '?p=' + encodeURIComponent(name) + '&url=' + encodeURIComponent(url) + '&site=' + SITE_SLUG + (network && network !== 'adtraction' ? '&network=' + encodeURIComponent(network) : '')
@@ -82,25 +82,25 @@ export default function Home({ providers, year, month, updated }) {
   return (
     <>
       <Head>
-        <title>Bästa hörlurar 2026 – Köpguide och tips</title>
-        <meta name="description" content="Upptäck de bästa hörlurarna 2026 med vår köpguide ✓ Jämför toppmodeller för bästa ljudupplevelse." />
+        <title>Bästa hörlurar 2026: Toppval och recensioner</title>
+        <meta name="description" content="Upptäck de bästa hörlurarna 2026 ✓ Sony, Bose, Apple och fler toppval för ljudkvalitet och komfort." />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
-        <link rel="canonical" href="https://horlurartestet.vercel.app" />
+        <link rel="canonical" href="https://horlurtestet.vercel.app" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Bästa hörlurar 2026 – Köpguide och tips" />
-        <meta property="og:description" content="Upptäck de bästa hörlurarna 2026 med vår köpguide ✓ Jämför toppmodeller för bästa ljudupplevelse." />
-        <meta property="og:url" content="https://horlurartestet.vercel.app" />
+        <meta property="og:title" content="Bästa hörlurar 2026: Toppval och recensioner" />
+        <meta property="og:description" content="Upptäck de bästa hörlurarna 2026 ✓ Sony, Bose, Apple och fler toppval för ljudkvalitet och komfort." />
+        <meta property="og:url" content="https://horlurtestet.vercel.app" />
         <meta property="og:locale" content="sv_SE" />
-        <meta property="og:site_name" content="Hörlurartestet" />
-        <meta property="og:image" content="https://horlurartestet.vercel.app/api/og?title=B%C3%A4sta%20h%C3%B6rlurar%202026%20%E2%80%93%20K%C3%B6pguide%20och%20tips&niche=teknik" />
+        <meta property="og:site_name" content="Hörlurtestet" />
+        <meta property="og:image" content="https://horlurtestet.vercel.app/api/og?title=B%C3%A4sta%20h%C3%B6rlurar%202026%3A%20Toppval%20och%20recensioner&niche=teknik" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Bästa hörlurar 2026 – Köpguide och tips" />
-        <meta name="twitter:description" content="Upptäck de bästa hörlurarna 2026 med vår köpguide ✓ Jämför toppmodeller för bästa ljudupplevelse." />
-        <meta name="twitter:image" content="https://horlurartestet.vercel.app/api/og?title=B%C3%A4sta%20h%C3%B6rlurar%202026%20%E2%80%93%20K%C3%B6pguide%20och%20tips&niche=teknik" />
-        <link rel="alternate" hreflang="sv" href="https://horlurartestet.vercel.app" />
-        <link rel="alternate" hreflang="x-default" href="https://horlurartestet.vercel.app" />
+        <meta name="twitter:title" content="Bästa hörlurar 2026: Toppval och recensioner" />
+        <meta name="twitter:description" content="Upptäck de bästa hörlurarna 2026 ✓ Sony, Bose, Apple och fler toppval för ljudkvalitet och komfort." />
+        <meta name="twitter:image" content="https://horlurtestet.vercel.app/api/og?title=B%C3%A4sta%20h%C3%B6rlurar%202026%3A%20Toppval%20och%20recensioner&niche=teknik" />
+        <link rel="alternate" hreflang="sv" href="https://horlurtestet.vercel.app" />
+        <link rel="alternate" hreflang="x-default" href="https://horlurtestet.vercel.app" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -116,7 +116,7 @@ export default function Home({ providers, year, month, updated }) {
         height:60, display:'flex', alignItems:'center', justifyContent:'space-between',
         position:'sticky', top:0, zIndex:100, fontFamily:'Inter,sans-serif' }}>
         <Link href="/" style={{ fontWeight:800, fontSize:18, color:pc, textDecoration:'none' }}>
-          Hörlurartestet
+          Hörlurtestet
         </Link>
         <div style={{ display:'flex', gap:28, fontSize:14 }}>
           <a href="#jamfor" style={{ color:'#64748b', textDecoration:'none' }}>Jämförelse</a>
@@ -144,16 +144,16 @@ export default function Home({ providers, year, month, updated }) {
             </div>
             <h1 style={{ fontSize:'clamp(26px,4vw,46px)', fontWeight:800,
               lineHeight:1.14, marginBottom:18, color:'#0f172a' }}>
-              Bästa hörlurar 2026
+              Bästa hörlurar 2026: utforska toppmodellerna
             </h1>
             <p style={{ fontSize:18, color:'#475569', lineHeight:1.72,
               marginBottom:32, maxWidth:540 }}>
-              Upptäck de bästa hörlurarna för en överlägsen ljudupplevelse 2026
+              Upptäck de bästa hörlurarna för 2026: sony, bose, apple med flera.
             </p>
             <a href="#jamfor" style={{ display:'inline-block', background:pc, color:'#fff',
               padding:'14px 32px', borderRadius:10, fontWeight:700, fontSize:16,
               textDecoration:'none', boxShadow:'0 4px 24px '+pc+'44' }}>
-              Utforska nu →
+              Upptäck dina favoriter →
             </a>
             <p style={{ marginTop:14, fontSize:13, color:'#94a3b8' }}>
               Gratis &middot; Oberoende &middot; Ingen prenumeration
@@ -167,7 +167,7 @@ export default function Home({ providers, year, month, updated }) {
         padding:'16px 20px', fontFamily:'Inter,sans-serif' }}>
         <div style={{ maxWidth:960, margin:'0 auto', display:'flex',
           gap:32, flexWrap:'wrap', justifyContent:'center', alignItems:'center' }}>
-          <div style={{display:'flex',alignItems:'flex-start',gap:8,fontSize:14,color:'#374151'}}><span style={{color:'#6366f1',fontWeight:800,flexShrink:0}}>✓</span><span>Avancerad brusreducering</span></div><div style={{display:'flex',alignItems:'flex-start',gap:8,fontSize:14,color:'#374151'}}><span style={{color:'#6366f1',fontWeight:800,flexShrink:0}}>✓</span><span>Exceptionell ljudkvalitet</span></div><div style={{display:'flex',alignItems:'flex-start',gap:8,fontSize:14,color:'#374151'}}><span style={{color:'#6366f1',fontWeight:800,flexShrink:0}}>✓</span><span>Trådlös komfort</span></div>
+          <div style={{display:'flex',alignItems:'flex-start',gap:8,fontSize:14,color:'#374151'}}><span style={{color:'#6366f1',fontWeight:800,flexShrink:0}}>✓</span><span>Exceptionell ljudkvalitet</span></div><div style={{display:'flex',alignItems:'flex-start',gap:8,fontSize:14,color:'#374151'}}><span style={{color:'#6366f1',fontWeight:800,flexShrink:0}}>✓</span><span>Avancerad brusreducering</span></div><div style={{display:'flex',alignItems:'flex-start',gap:8,fontSize:14,color:'#374151'}}><span style={{color:'#6366f1',fontWeight:800,flexShrink:0}}>✓</span><span>Elegant och bekväm design</span></div>
         </div>
       </div>
 
@@ -175,7 +175,7 @@ export default function Home({ providers, year, month, updated }) {
         margin:'0 auto', fontFamily:'Inter,sans-serif' }}>
         <div style={{ textAlign:'center', marginBottom:36 }}>
           <h2 style={{ fontSize:30, fontWeight:800, marginBottom:10, color:'#0f172a' }}>
-            Jämför toppmodeller
+            Jämför de bästa hörlurarna
           </h2>
           <p style={{ color:'#64748b', fontSize:15 }}>
             Vi har granskat {providers.length} alternativ &mdash; senast uppdaterat {updated}
@@ -351,17 +351,17 @@ export default function Home({ providers, year, month, updated }) {
         fontFamily:'Inter,sans-serif' }}>
         <div style={{ maxWidth:760, margin:'0 auto' }}>
           <h2 style={{ fontSize:28, fontWeight:800, marginBottom:20, color:'#0f172a' }}>
-            Köpguide
+            Köpguide för hörlurar
           </h2>
           <p style={{ fontSize:16, lineHeight:1.85, color:'#374151', marginBottom:28 }}>
-            När du väljer hörlurar är det viktigt att överväga flera faktorer för att säkerställa att du får den bästa upplevelsen. Först och främst bör du tänka på vilken typ av hörlurar som passar dina behov bäst. Over-ear-hörlurar erbjuder ofta bättre ljudisolering och komfort för långa lyssningssessioner, medan in-ear-modeller är mer bärbara och diskreta. En annan viktig faktor är ljudkvaliteten. Kolla in specifikationer som frekvensomfång och impedans för att få en uppfattning om hur hörlurarna presterar. Brusreducering är också en viktig funktion att överväga om du ofta befinner dig i bullriga miljöer. Trådlösa hörlurar blir alltmer populära tack vare deras bekvämlighet, men se till att batteritiden är tillräcklig för dina behov. Slutligen, tänk på din budget och jämför olika modeller för att hitta den bästa kombinationen av funktioner och pris.
+            När du letar efter de perfekta hörlurarna finns det flera faktorer att överväga för att säkerställa att du gör rätt val. Först och främst bör du tänka på ljudkvaliteten. Hörlurar som Sony WH-1000XM5 och Sennheiser Momentum 4 Wireless erbjuder hög ljudfidelitet, vilket är viktigt för musikälskare. Brusreducering är en annan viktig egenskap, speciellt om du ofta befinner dig i bullriga miljöer; modeller som Bose Noise Cancelling Headphones 700 excellerar i detta avseende. Komfort och passform är också avgörande, särskilt för längre användningsperioder. Hörlurar som Apple AirPods Max och Jabra Elite 85h är kända för sin komfortabla design. Slutligen, överväg batteritiden och om hörlurarna erbjuder några extra funktioner som röststyrning eller touchkontroller. Bang & Olufsen Beoplay H95 till exempel, kombinerar både stil och funktionalitet. Genom att väga dessa faktorer kan du hitta de hörlurar som bäst passar dina behov och preferenser.
           </p>
           <h3 style={{ fontSize:22, fontWeight:700, marginBottom:16, color:'#0f172a', marginTop:40 }}>Vanliga misstag</h3>
-          <p style={{ fontSize:16, lineHeight:1.85, color:'#374151', marginBottom:28 }}>Ett av de vanligaste misstagen när man köper hörlurar är att inte prova dem innan köp. Ljudpreferenser är mycket personliga, och vad som låter bra för någon annan kanske inte passar dig. Ett annat misstag är att fokusera för mycket på varumärket snarare än de specifika funktionerna och kvaliteterna hos hörlurarna. Dessutom ignorerar många användare vikten av passform och komfort, vilket kan leda till obehag under längre lyssningssessioner. Slutligen, se till att du förstår garantivillkoren och vad som täcks, vilket kan spara pengar och frustration i det långa loppet.</p>
+          <p style={{ fontSize:16, lineHeight:1.85, color:'#374151', marginBottom:28 }}>När du väljer hörlurar är det lätt att fastna för de senaste trenderna eller det mest kända märket utan att ta hänsyn till dina personliga behov. Ett vanligt misstag är att inte prioritera ljudkvalitet över design. Även om ett par hörlurar kan se bra ut, är det ljudupplevelsen som verkligen betyder något. Ett annat misstag är att inte prova hörlurarna innan köp, vilket kan leda till obekväma passformer. Glöm inte heller att kontrollera batteritiden, speciellt om du ofta är på språng. Slutligen, underskatta inte vikten av brusreducering om du ofta befinner dig i bullriga miljöer.</p>
           <h3 style={{ fontSize:20, fontWeight:700, marginBottom:24, color:'#0f172a' }}>
             Vad ska du tänka på?
           </h3>
-          <div style={{display:'flex',gap:14,alignItems:'flex-start',marginBottom:16}}><div style={{width:28,height:28,borderRadius:'50%',background:'#6366f115',color:'#6366f1',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:800,fontSize:13,flexShrink:0}}>1</div><p style={{color:'#374151',lineHeight:1.7,fontSize:15}}>Prova alltid hörlurarna först</p></div><div style={{display:'flex',gap:14,alignItems:'flex-start',marginBottom:16}}><div style={{width:28,height:28,borderRadius:'50%',background:'#6366f115',color:'#6366f1',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:800,fontSize:13,flexShrink:0}}>2</div><p style={{color:'#374151',lineHeight:1.7,fontSize:15}}>Jämför specifikationer noggrant</p></div><div style={{display:'flex',gap:14,alignItems:'flex-start',marginBottom:16}}><div style={{width:28,height:28,borderRadius:'50%',background:'#6366f115',color:'#6366f1',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:800,fontSize:13,flexShrink:0}}>3</div><p style={{color:'#374151',lineHeight:1.7,fontSize:15}}>Tänk på passform och komfort</p></div><div style={{display:'flex',gap:14,alignItems:'flex-start',marginBottom:16}}><div style={{width:28,height:28,borderRadius:'50%',background:'#6366f115',color:'#6366f1',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:800,fontSize:13,flexShrink:0}}>4</div><p style={{color:'#374151',lineHeight:1.7,fontSize:15}}>Kontrollera garantivillkor</p></div>
+          <div style={{display:'flex',gap:14,alignItems:'flex-start',marginBottom:16}}><div style={{width:28,height:28,borderRadius:'50%',background:'#6366f115',color:'#6366f1',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:800,fontSize:13,flexShrink:0}}>1</div><p style={{color:'#374151',lineHeight:1.7,fontSize:15}}>Prova innan du köper</p></div><div style={{display:'flex',gap:14,alignItems:'flex-start',marginBottom:16}}><div style={{width:28,height:28,borderRadius:'50%',background:'#6366f115',color:'#6366f1',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:800,fontSize:13,flexShrink:0}}>2</div><p style={{color:'#374151',lineHeight:1.7,fontSize:15}}>Ljudkvalitet över design</p></div><div style={{display:'flex',gap:14,alignItems:'flex-start',marginBottom:16}}><div style={{width:28,height:28,borderRadius:'50%',background:'#6366f115',color:'#6366f1',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:800,fontSize:13,flexShrink:0}}>3</div><p style={{color:'#374151',lineHeight:1.7,fontSize:15}}>Kontrollera batteritiden</p></div><div style={{display:'flex',gap:14,alignItems:'flex-start',marginBottom:16}}><div style={{width:28,height:28,borderRadius:'50%',background:'#6366f115',color:'#6366f1',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:800,fontSize:13,flexShrink:0}}>4</div><p style={{color:'#374151',lineHeight:1.7,fontSize:15}}>Överväg brusreducering</p></div>
         </div>
       </section>
 
@@ -370,7 +370,7 @@ export default function Home({ providers, year, month, updated }) {
         <h2 style={{ fontSize:26, fontWeight:800, marginBottom:32, color:'#0f172a' }}>
           Vanliga frågor
         </h2>
-        <details style={{borderBottom:'1px solid #e2e8f0',paddingBottom:16,marginBottom:16}} open={false}><summary style={{fontWeight:700,fontSize:15,cursor:'pointer',color:'#0f172a',listStyle:'none',display:'flex',justifyContent:'space-between',alignItems:'center'}}>Vilka är de bästa hörlurarna 2026?<span style={{color:'#6366f1',fontSize:18,fontWeight:400}}>+</span></summary><p style={{marginTop:12,color:'#475569',lineHeight:1.75,fontSize:14}}>De bästa hörlurarna 2026 inkluderar modeller som Sony WH-1000XM6, Bose QuietComfort 55 och Apple AirPods Max 2. Dessa hörlurar erbjuder överlägsen ljudkvalitet, avancerad brusreducering och trådlös anslutning, vilket gör dem till favoriter bland användare. Valet av bästa hörlurar beror dock på individuella preferenser och behov.</p></details>
+        <details style={{borderBottom:'1px solid #e2e8f0',paddingBottom:16,marginBottom:16}} open={false}><summary style={{fontWeight:700,fontSize:15,cursor:'pointer',color:'#0f172a',listStyle:'none',display:'flex',justifyContent:'space-between',alignItems:'center'}}>Vilka hörlurar har bäst brusreducering?<span style={{color:'#6366f1',fontSize:18,fontWeight:400}}>+</span></summary><p style={{marginTop:12,color:'#475569',lineHeight:1.75,fontSize:14}}>Sony WH-1000XM5 och Bose Noise Cancelling Headphones 700 är kända för sin överlägsna brusreduceringsteknik. De erbjuder båda en exceptionell ljudupplevelse i bullriga miljöer.</p></details>
       </section>
 
       <section style={{ background:'#f8fafc', borderTop:'1px solid #e2e8f0', padding:'32px 20px', fontFamily:'Inter,sans-serif' }}>
@@ -390,7 +390,7 @@ export default function Home({ providers, year, month, updated }) {
         <div style={{ maxWidth:980, margin:'0 auto' }}>
           <div style={{ display:'flex', gap:48, flexWrap:'wrap', marginBottom:36 }}>
             <div style={{ maxWidth:260 }}>
-              <div style={{ fontWeight:800, color:'#fff', fontSize:18, marginBottom:10 }}>Hörlurartestet</div>
+              <div style={{ fontWeight:800, color:'#fff', fontSize:18, marginBottom:10 }}>Hörlurtestet</div>
               <p style={{ fontSize:13, lineHeight:1.75 }}>
                 Oberoende jämförelsetjänst för svenska konsumenter. Vi jämför 7 alternativ inom teknik.
               </p>
@@ -417,17 +417,17 @@ export default function Home({ providers, year, month, updated }) {
             <div>
               <div style={{ fontWeight:700, color:'#e2e8f0', marginBottom:14, fontSize:12, textTransform:'uppercase', letterSpacing:'0.5px' }}>Jämförelser</div>
               <div style={{ display:'flex', flexDirection:'column', gap:10, fontSize:14 }}>
-                <Link href="/jamfor/sony-wh-1000xm6-vs-bose-quietcomfort-55" style={{color:'#94a3b8',textDecoration:'none',fontSize:13}}>Sony WH-1000XM6 vs Bose QuietComfort 55</Link>
-                <Link href="/jamfor/sony-wh-1000xm6-vs-apple-airpods-max-2" style={{color:'#94a3b8',textDecoration:'none',fontSize:13}}>Sony WH-1000XM6 vs Apple AirPods Max 2</Link>
-                <Link href="/jamfor/sony-wh-1000xm6-vs-sennheiser-momentum-5-wireless" style={{color:'#94a3b8',textDecoration:'none',fontSize:13}}>Sony WH-1000XM6 vs Sennheiser Momentum 5 Wireless</Link>
-                <Link href="/jamfor/sony-wh-1000xm6-vs-jabra-elite-95h" style={{color:'#94a3b8',textDecoration:'none',fontSize:13}}>Sony WH-1000XM6 vs Jabra Elite 95h</Link>
-                <Link href="/jamfor/sony-wh-1000xm6-vs-bang-olufsen-beoplay-h10" style={{color:'#94a3b8',textDecoration:'none',fontSize:13}}>Sony WH-1000XM6 vs Bang & Olufsen Beoplay H10</Link>
+                <Link href="/jamfor/sony-wh-1000xm5-vs-bose-noise-cancelling-headphones-700" style={{color:'#94a3b8',textDecoration:'none',fontSize:13}}>Sony WH-1000XM5 vs Bose Noise Cancelling Headphones 700</Link>
+                <Link href="/jamfor/sony-wh-1000xm5-vs-apple-airpods-max" style={{color:'#94a3b8',textDecoration:'none',fontSize:13}}>Sony WH-1000XM5 vs Apple AirPods Max</Link>
+                <Link href="/jamfor/sony-wh-1000xm5-vs-sennheiser-momentum-4-wireless" style={{color:'#94a3b8',textDecoration:'none',fontSize:13}}>Sony WH-1000XM5 vs Sennheiser Momentum 4 Wireless</Link>
+                <Link href="/jamfor/sony-wh-1000xm5-vs-jabra-elite-85h" style={{color:'#94a3b8',textDecoration:'none',fontSize:13}}>Sony WH-1000XM5 vs Jabra Elite 85h</Link>
+                <Link href="/jamfor/sony-wh-1000xm5-vs-bang-olufsen-beoplay-h95" style={{color:'#94a3b8',textDecoration:'none',fontSize:13}}>Sony WH-1000XM5 vs Bang & Olufsen Beoplay H95</Link>
               </div>
             </div>
           </div>
           <div style={{ borderTop:'1px solid #1e293b', paddingTop:24, fontSize:12, lineHeight:1.75 }}>
             <p style={{ marginBottom:8 }}>
-              &copy; {year} Hörlurartestet. Oberoende jämförelsetjänst utan koppling till listade
+              &copy; {year} Hörlurtestet. Oberoende jämförelsetjänst utan koppling till listade
               varumärken utöver eventuella affiliate-provisioner.
             </p>
             <p>
