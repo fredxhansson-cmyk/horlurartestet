@@ -1,5 +1,5 @@
 export async function getServerSideProps({ res }) {
-  const base = process.env.NEXT_PUBLIC_URL || 'https://horlurartestet.vercel.app';
+  const base = process.env.NEXT_PUBLIC_URL || 'https://horlurtestet.vercel.app';
   const txt = 'User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ' + base + '/sitemap.xml\n';
   res.setHeader('Content-Type', 'text/plain');
   res.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate');
